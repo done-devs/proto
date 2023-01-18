@@ -4,7 +4,7 @@ package provider;
 
 import "google/protobuf/wrappers.proto";
 
-option go_package = "github.com/done-devs/proto-go/provider";
+option go_package = "github.com/done-devs/proto-go/proto";
 
 service Provider {
     rpc GetId (Empty) returns (google.protobuf.StringValue);
