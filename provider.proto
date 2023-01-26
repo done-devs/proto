@@ -11,7 +11,7 @@ import "google/protobuf/timestamp.proto";
 
 service Provider {
     rpc GetTask (google.protobuf.StringValue) returns (ProviderResponse);
-    rpc GetTasks (google.protobuf.Empty) returns (stream ProviderResponse);
+    rpc GetTasks (google.protobuf.StringValue) returns (stream ProviderResponse);
     rpc CreateTask (Task) returns (ProviderResponse);
     rpc UpdateTask (Task) returns (ProviderResponse);
     rpc DeleteTask (google.protobuf.StringValue) returns (ProviderResponse);
