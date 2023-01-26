@@ -10,24 +10,24 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service Provider {
-    rpc GetTask (google.protobuf.StringValue) returns (Response);
-    rpc GetTasks (google.protobuf.Empty) returns (stream Response);
-    rpc CreateTask (Task) returns (Response);
-    rpc UpdateTask (Task) returns (Response);
-    rpc DeleteTask (google.protobuf.StringValue) returns (Response);
+    rpc GetTask (google.protobuf.StringValue) returns (ProviderResponse);
+    rpc GetTasks (google.protobuf.Empty) returns (stream ProviderResponse);
+    rpc CreateTask (Task) returns (ProviderResponse);
+    rpc UpdateTask (Task) returns (ProviderResponse);
+    rpc DeleteTask (google.protobuf.StringValue) returns (ProviderResponse);
 
-    rpc GetList (google.protobuf.StringValue) returns (Response);
-    rpc GetLists (google.protobuf.Empty) returns (stream Response);
-    rpc GetListIds (google.protobuf.Empty) returns (Response);
-    rpc CreateList (List) returns (Response);
-    rpc UpdateList (List) returns (Response);
-    rpc DeleteList (google.protobuf.StringValue) returns (Response);
-    rpc GetTasksFromList(google.protobuf.StringValue) returns (stream Response);
-    rpc GetTaskIdsFromList(google.protobuf.StringValue) returns (Response);
-    rpc GetTaskCountFromList(google.protobuf.StringValue) returns (Response);
+    rpc GetList (google.protobuf.StringValue) returns (ProviderResponse);
+    rpc GetLists (google.protobuf.Empty) returns (stream ProviderResponse);
+    rpc GetListIds (google.protobuf.Empty) returns (ProviderResponse);
+    rpc CreateList (List) returns (ProviderResponse);
+    rpc UpdateList (List) returns (ProviderResponse);
+    rpc DeleteList (google.protobuf.StringValue) returns (ProviderResponse);
+    rpc GetTasksFromList(google.protobuf.StringValue) returns (stream ProviderResponse);
+    rpc GetTaskIdsFromList(google.protobuf.StringValue) returns (ProviderResponse);
+    rpc GetTaskCountFromList(google.protobuf.StringValue) returns (ProviderResponse);
 }
 
-message Response {
+message ProviderResponse {
     bool successful = 1;
     string message = 2;
     int64 count = 3;
