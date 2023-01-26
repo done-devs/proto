@@ -50,10 +50,9 @@ message Task {
     optional google.protobuf.Timestamp deletion_date = 13;
     optional google.protobuf.Timestamp due_date = 14;
     optional google.protobuf.Timestamp reminder_date = 15;
-    optional google.protobuf.Timestamp reminder_time = 16;
-    optional string recurrence = 17;
-    int64 created_date_time = 18;
-    int64 last_modified_date_time = 19;
+    optional string recurrence = 16;
+    int64 created_date_time = 17;
+    int64 last_modified_date_time = 18;
 }
 
 message SubTask {
