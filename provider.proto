@@ -5,6 +5,8 @@ option go_package = "./provider";
 package provider;
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/empty.proto";
 
 service Provider {
     rpc GetTask (google.protobuf.StringValue) returns (Response);
@@ -27,7 +29,7 @@ service Provider {
 message Response {
     bool successful = 1;
     string message = 2;
-    i64 count = 3;
+    int64 count = 3;
     optional google.protobuf.Value value = 4;
 }
 
