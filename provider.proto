@@ -7,91 +7,70 @@ package provider;
 import "google/protobuf/wrappers.proto";
 
 service Provider {
-    rpc GetId (Empty) returns (google.protobuf.StringValue);
-    rpc GetName (Empty) returns (google.protobuf.StringValue);
-    rpc GetDescription (Empty) returns (google.protobuf.StringValue);
-    rpc GetIconName (Empty) returns (google.protobuf.StringValue);
+    rpc GetTask (google.protobuf.StringValue) returns (Response);
+    rpc GetTasks (google.protobuf.Empty) returns (stream Response);
+    rpc CreateTask (Task) returns (Response);
+    rpc UpdateTask (Task) returns (Response);
+    rpc DeleteTask (google.protobuf.StringValue) returns (Response);
 
-    rpc ReadAllTasks (Empty) returns (stream TaskResponse);
-    rpc ReadTasksFromList(google.protobuf.StringValue) returns (stream TaskResponse);
-    rpc ReadTaskIdsFromList(google.protobuf.StringValue) returns (TaskIdResponse);
-    rpc ReadTaskCountFromList(google.protobuf.StringValue) returns (CountResponse);
-    rpc CreateTask (Task) returns (TaskResponse);
-    rpc ReadTask (google.protobuf.StringValue) returns (TaskResponse);
-    rpc UpdateTask (Task) returns (TaskResponse);
-    rpc DeleteTask (google.protobuf.StringValue) returns (TaskResponse);
-
-    rpc ReadAllLists (Empty) returns (stream ListResponse);
-    rpc ReadAllListIds (Empty) returns (ListIdResponse);
-    rpc CreateList (List) returns (ListResponse);
-    rpc ReadList (google.protobuf.StringValue) returns (ListResponse);
-    rpc UpdateList (List) returns (ListResponse);
-    rpc DeleteList (google.protobuf.StringValue) returns (ListResponse);
+    rpc GetList (google.protobuf.StringValue) returns (Response);
+    rpc GetLists (google.protobuf.Empty) returns (stream Response);
+    rpc GetListIds (google.protobuf.Empty) returns (Response);
+    rpc CreateList (List) returns (Response);
+    rpc UpdateList (List) returns (Response);
+    rpc DeleteList (google.protobuf.StringValue) returns (Response);
+    rpc GetTasksFromList(google.protobuf.StringValue) returns (stream Response);
+    rpc GetTaskIdsFromList(google.protobuf.StringValue) returns (Response);
+    rpc GetTaskCountFromList(google.protobuf.StringValue) returns (Response);
 }
 
-message Empty {}
+message Response {
+    bool successful = 1;
+    string message = 2;
+    i64 count = 3;
+    optional google.protobuf.Value value = 4;
+}
 
 message Task {
     string id = 1;
     string parent = 2;
     string title = 3;
-    optional string body = 4;
-    TaskImportance importance = 5;
-    bool favorite = 6;
-    bool is_reminder_on = 7;
-    TaskStatus status = 8;
-    optional int64 completed_on = 9;
-    optional int64 due_date = 10;
-    optional int64 reminder_date = 11;
-    int64 created_date_time = 12;
-    int64 last_modified_date_time = 13;
+    bool favorite = 4;
+    bool today = 5;
+    bool is_reminder_on = 6;
+    Status status = 7;
+    Priority priority = 8;
+    repeated SubTask sub_tasks = 9;
+    repeated string tags = 10;
+    optional string notes = 11;
+    optional int64 completion_date = 12;
+    optional int64 deletion_date = 13;
+    optional int64 due_date = 14;
+    optional int64 reminder_date = 15;
+    optional int64 reminder_time = 16;
+    optional string recurrence = 17;
+    int64 created_date_time = 18;
+    int64 last_modified_date_time = 19;
 }
 
-enum TaskImportance {
-    LOW = 0;
-    NORMAL = 1;
-    HIGH = 2;
-}
-
-enum TaskStatus {
-    NOT_STARTED = 0;
-    COMPLETED = 1;
+message SubTask {
+    string title = 1;
+    bool completed = 2;
 }
 
 message List {
     string id = 1;
     string name = 2;
-    bool is_owner = 3;
     optional string icon = 5;
-    string provider = 6;
 }
 
-message TaskResponse {
-    bool successful = 1;
-    string message = 2;
-    optional Task task = 3;
+enum Priority {
+    LOW = 0;
+    NORMAL = 1;
+    HIGH = 2;
 }
 
-message TaskIdResponse {
-    bool successful = 1;
-    string message = 2;
-    repeated string tasks = 3;
-}
-
-message ListResponse {
-    bool successful = 1;
-    string message = 2;
-    optional List list = 3;
-}
-
-message ListIdResponse {
-    bool successful = 1;
-    string message = 2;
-    repeated string lists = 3;
-}
-
-message CountResponse {
-    bool successful = 1;
-    string message = 2;
-    int64 count = 3;
+enum Status {
+    NOT_STARTED = 0;
+    COMPLETED = 1;
 }
