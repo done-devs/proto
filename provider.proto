@@ -31,7 +31,10 @@ message ProviderResponse {
     bool successful = 1;
     string message = 2;
     int64 count = 3;
-    optional google.protobuf.Value value = 4;
+    optional Task task = 4;
+    optional List list = 5;
+    repeated string lists = 6;
+    repeated string tasks = 7;
 }
 
 message Task {
