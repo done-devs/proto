@@ -40,7 +40,6 @@ message Task {
     string title = 3;
     bool favorite = 4;
     bool today = 5;
-    bool is_reminder_on = 6;
     Status status = 7;
     Priority priority = 8;
     repeated SubTask sub_tasks = 9;
