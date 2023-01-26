@@ -46,13 +46,13 @@ message Task {
     repeated SubTask sub_tasks = 9;
     repeated string tags = 10;
     optional string notes = 11;
-    optional google.protobuf.Timestamp completion_date = 12;
-    optional google.protobuf.Timestamp deletion_date = 13;
-    optional google.protobuf.Timestamp due_date = 14;
-    optional google.protobuf.Timestamp reminder_date = 15;
+    google.protobuf.Timestamp completion_date = 12;
+    google.protobuf.Timestamp deletion_date = 13;
+    google.protobuf.Timestamp due_date = 14;
+    google.protobuf.Timestamp reminder_date = 15;
     optional string recurrence = 16;
-    int64 created_date_time = 17;
-    int64 last_modified_date_time = 18;
+    google.protobuf.Timestamp created_date_time = 17;
+    google.protobuf.Timestamp last_modified_date_time = 18;
 }
 
 message SubTask {
